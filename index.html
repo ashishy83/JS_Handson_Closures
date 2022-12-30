@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            color: red;
+        }
+        pre{
+            color: blue;
+        }
+        h3{
+            color: green;
+        }
+    </style>
+</head>
+<body style="background-color:azure;">
+    <h2>Q1. Print the output :- </h2>
+    <pre>   
+        function counter(){
+        var counter = 0;
+    
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+    
+        return IncreaseCounter;
+        }
+        
+        var counter = counter();
+        alert(counter());
+        alert(counter());
+        alert(counter());
+        alert(counter());
+    </pre>
+    <h3>output: <br>
+        1 <br>
+        2 <br>
+        3 <br>
+        4 
+
+    </h3>
+    <p>Explanation: The counter() is called 4 times,thus the counter increased by calling each time.</p>
+
+    <h2>Q2. Print the Output.</h2>
+    <pre>
+        let count = 0;
+        (function () {
+        if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged?
+        }
+        console.log(count); // What is logged?
+        })();
+    </pre>
+    <h3>Output:  <br>
+        1 <br>
+         0
+    </h3>
+    <p>Explanation: let is block scoped variable, so for first console the scope of count is inside if hence 1 will be logged and for second console the scope of count is the global declared count hence 0 is logged</p>
+
+    <h2>Q3. Print the output.</h2>
+    <pre>
+         for (var i = 0; i < 3; i++) {
+            setTimeout(function log() {
+              console.log(i); // What is logged?
+            }, 1000);
+          }
+    </pre>
+    <h3>
+        Output: <br>
+        3 <br>
+        3 <br>
+        3
+    </h3>
+    <p>Explanation:Here first the for loop will run till i getting 3 and then settimeout function starts execute and then we get the i value as 3 after 1 second delay,as this happens var keyword has global scope.</p>
+
+    <h2>Q4. Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h2>
+    <pre>
+        function rectangleArea(width){
+            function rectangle(length){
+                return width * length;
+            }
+            return rectangle(20);
+        }
+        console.log(rectangleArea(15));
+    </pre>
+    <h3>Output: 300 </h3>
+    <h2>Q5. Take a variable in outer function and create an inner function to increase the counter every time it is called.</h2>
+    <pre>
+        function counter(){
+            var counter = 0;
+        
+        function IncreaseCounter(){
+            return counter += 1;
+        };
+        return IncreaseCounter;
+        }
+        var counter = counter();
+        console.log(counter());
+        console.log(counter());
+        console.log(counter());
+        console.log(counter());
+    </pre>
+    <h3>Output: <br> 
+        1 <br>
+        2 <br>
+        3 <br> 
+        4
+    </h3>
+    <h2>Q6. Print Output </h2>
+       <pre> var a = 12;
+        (function () {
+            alert(a);
+        })();
+    </pre>
+    <h3>Output: 12 </h3>
+    <p>Explanation:Here "var a" is a global scoped variable,so it can be accessed anywhere and its initialised with value 12,hence getting 12 as output.</p>
+
+    <h2>Q7. Print the output. </h2>
+        <pre> 
+        var a = 10;
+        var x = (function () {
+            var a = 12;
+            return function () {
+            alert(a);
+            };
+        })();
+        x();
+    </pre>
+    <h3>Output: 12</h3>
+    <p>Explanation:Here "a" is forming a closure with the inner function,so it can be accessed inside inner function, hence getting 12 as the output.</p>
+
+    <h2>Q8. Print the output.</h2>
+    <pre>
+        var globalVar = ""xyz"";
+
+        (function outerFunc(outerArg) {
+        var outerVar = 'a';
+
+        (function innerFunc(innerArg) {
+        var innerVar = 'b';
+
+        console.log(
+        ""outerArg = "" + outerArg + ""\n"" +
+        ""innerArg = "" + innerArg + ""\n"" +
+        ""outerVar = "" + outerVar + ""\n"" +
+        ""innerVar = "" + innerVar + ""\n"" +
+        ""globalVar = "" + globalVar);
+
+        })(456);
+        })(123);
+    </pre>
+    <h3>Output: <br>
+        outerArg = 123
+        <br>
+        innerArg = 456
+        <br>
+        outerVar = a
+        <br>
+        innerVar = b
+        <br>
+        globalVar = xyz 
+    </h3>
+    <p>Explanation:GlobalVar is forming a closure with outerFunc hence it can be accessed inside it, OuterArg and outerVar are forming a closure with innerFunc, hence because of closures all these are accessible inside innerFunc and hence we are getting the above output</p>
+</body>
+</html>
